@@ -51,6 +51,10 @@ func main() {
 	// 测试非正常退出
 	//var v int = 1 / 0
 	//fm.Println(v)
+
+	a := 5
+	b := int(a)
+	fm.Println(b)
 }
 
 func thisIsFirstFunction() {

@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io"
+)
 
 func main() {
 	fmt.Println("defer的作用类似于finally，用于在方法执行结束前做一些操作")
@@ -16,11 +19,17 @@ func main() {
 		4. 关闭数据库连接
 	*/
 
-	printLogExample(2)
+	fmt.Println(printLogExample(2))
 }
 
-func printLogExample(i int) {
+func printLogExample(i int) (a int, err error) {
 
+	defer func() {
+		// 函数的作用就是打印入出参
+		fmt.Println(" 入参: %v, 出参：%v", i, a, err)
+	}() // 这里定义一个匿名函数，然后立即调用，放到defer中。
+
+	return i * 10, io.EOF
 }
 
 func defer2() int {
